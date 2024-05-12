@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="530" height="70" viewBox="0 0 530 70">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 60px;
+        text-anchor: middle;
+        font-family: "LEMON MILK";
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #f7b03f;
+      }
+    </style>
+  </defs>
+  <text id="Binus_Modules" data-name="Binus Modules" class="cls-1" x="264" y="58.754"><tspan x="264">Binus <tspan class="cls-2">Modules</tspan></tspan></text>
+</svg>
