@@ -60,6 +60,14 @@ a{
     width: 100%;
 }
 
+.sidebar-item{
+    color: #5e5e5e;
+}
+
+.sidebar-item-title{
+    display:none;
+}
+
 @media only screen and (min-width: 768px) {
     .sidebar {
       padding: 0;
@@ -67,28 +75,36 @@ a{
       flex-direction: column;
       width: calc(4rem + 15px);
       top: 4rem;
+      margin-left: 2rem;
     }
 
     .sidebar-item{
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 1rem;
         padding: 0.8rem 0.5rem;
-        color: #5e5e5e;
+        flex-wrap: wrap;
     }
 
     .sidebar-item:hover{
         color:black;
+    }
+
+    .sidebar-item-title{
+        display: block;
     }
 }
 
 @media only screen and (min-width: 1200px) {
     .sidebar {
       width: 10rem;
+      margin: 0;
     }
 
     .sidebar-item{
         padding: 0.8rem 0.8rem 2rem 2rem;
-
+        flex-wrap: nowrap;
+        justify-content: flex-start;
     }
 }
