@@ -6,9 +6,10 @@
 }
 
 body {
-    padding-top: 4rem;
+    padding-top: 5rem;
     margin: 0;
 }
+
 
 a{
     text-decoration: none;
@@ -20,8 +21,9 @@ a{
     position:fixed;
     top: 0;
     width: 100%;
-    height: 3rem;
+    height: 4rem;
     border-bottom: 0.15rem solid #c8ced3;
+
 }
 
 .logo-container {
@@ -51,7 +53,7 @@ a{
 
 .sidebar {
     position: fixed;
-    top: 3rem;
+    top: 5rem;
     left: 0;
     z-index: 900;
     display: flex;
