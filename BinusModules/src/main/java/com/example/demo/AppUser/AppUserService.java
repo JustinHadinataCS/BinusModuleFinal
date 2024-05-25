@@ -1,4 +1,4 @@
-package com.LoopPop.LoopPop.AppUser;
+package com.example.demo.AppUser;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

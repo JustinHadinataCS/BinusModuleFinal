@@ -1,4 +1,4 @@
-package com.LoopPop.LoopPop.Registration;
+package com.example.demo.Registration;
 
 public class RegistrationService {
 

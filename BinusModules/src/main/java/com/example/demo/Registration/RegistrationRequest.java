@@ -1,4 +1,5 @@
-package com.LoopPop.LoopPop.Registration;
+package com.example.demo.Registration;
+
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

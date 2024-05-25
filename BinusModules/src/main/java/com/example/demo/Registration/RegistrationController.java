@@ -1,4 +1,4 @@
-package com.LoopPop.LoopPop.Registration;
+package com.example.demo.Registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;

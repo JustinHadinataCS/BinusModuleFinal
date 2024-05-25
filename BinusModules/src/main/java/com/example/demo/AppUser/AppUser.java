@@ -1,4 +1,4 @@
-package com.LoopPop.LoopPop.AppUser;
+package com.example.demo.AppUser;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

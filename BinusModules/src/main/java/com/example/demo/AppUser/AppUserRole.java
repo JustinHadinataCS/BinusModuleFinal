@@ -1,4 +1,4 @@
-package com.LoopPop.LoopPop.AppUser;
+package com.example.demo.AppUser;
 
 public enum AppUserRole {
     USER,
