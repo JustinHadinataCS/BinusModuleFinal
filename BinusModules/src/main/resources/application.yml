@@ -1,0 +1,19 @@
+# Configs for connecting to a database
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: llizza
+    url: jdbc:postgresql://localhost:5432/registration
+    username: postgres
+  jpa:
+    ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

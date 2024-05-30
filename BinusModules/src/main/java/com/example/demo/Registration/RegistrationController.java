@@ -1,18 +1,31 @@
 package com.example.demo.Registration;
 
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.AppUser.AppUser;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.demo.AppUser.AppUserRole.ADMIN;
 
 @RestController
-@RequestMapping (path = "api/v1/registration")
-@AllArgsConstructor
+@RequestMapping(path = {"api/v1/registration"})
 public class RegistrationController {
 
     private RegistrationService registrationService;
-    public String register(@RequestBody RegistrationRequest request){
-        return  RegistrationRequest.register(request);
+    private List<AppUser> appUsers = new ArrayList<>();
+
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @PostMapping
+    public String register(@RequestBody RegistrationRequest request) {
+        return this.registrationService.register(request);
+    }
 }

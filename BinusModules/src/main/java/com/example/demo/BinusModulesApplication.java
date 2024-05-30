@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class BinusModulesApplication {
 	}
 
 	@Controller
-	public class MyController {
+	public static class MyController {
 
 		@GetMapping("/index")
 		public String index() {
