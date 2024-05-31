@@ -95,7 +95,7 @@
         </div>
 
         <h2>Register</h2>
-        <form method="POST" role="form" th:action="@{/register}" th:object="${user}">
+        <form method="POST" role="form" th:action="@{/registration}" th:object="${user}">
             <label for="firstname">Firstname</label>
             <input th:field="*{firstname}" type="text" id="firstname" name="firstname" required>
 

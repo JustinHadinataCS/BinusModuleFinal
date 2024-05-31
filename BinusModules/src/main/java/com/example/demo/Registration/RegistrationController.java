@@ -23,7 +23,9 @@ public class RegistrationController {
     }
 
     @GetMapping("/index")
-    public String index(){return "index";}
+    public String index(){
+        return "index";
+    }
 
     @GetMapping("/login")
     public String login(Model model, RegistrationRequest request){
@@ -38,18 +40,12 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerSave(@ModelAttribute("user") RegistrationRequest request) {
-        registrationService.register(request);
+    public String registrationSave(@ModelAttribute("user") RegistrationRequest request) {
+        boolean userExists = registrationService.register(request);
+        if(userExists){
+            return "registration";
+        }
         return "redirect:/registration?success";
     }
 
-//    @GetMapping("/index")
-//    public String index() {
-//        return "index";
-//    }
-//
-//    @PostMapping
-//    public String register(@RequestBody RegistrationRequest request) {
-//        return this.registrationService.register(request);
-//    }
 }

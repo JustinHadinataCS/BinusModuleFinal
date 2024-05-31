@@ -94,8 +94,14 @@
         <p class="message success">Invalid Credentials!</p>
     </div>
 
+    <div th:if="${param.logout}">
+        <div class="logout-message">
+            <p>Logout Successful!</p>
+        </div>
+    </div>
+
     <h2>Login</h2>
-    <form method="post" role="form" th:action="@{/register}" th:object="${user}">
+    <form method="post" role="form" th:action="@{/login}" th:object="${user}">
         <label for="email">Email</label>
         <input th:field="*{email}" type="email" id="email" name="email" required>
 
