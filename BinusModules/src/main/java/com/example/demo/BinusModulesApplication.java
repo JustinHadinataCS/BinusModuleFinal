@@ -16,12 +16,12 @@ public class BinusModulesApplication {
 		SpringApplication.run(BinusModulesApplication.class, args);
 	}
 
-	@Controller
-	public static class MyController {
-
-		@GetMapping("/index")
-		public String index() {
-			return "index";
-		}
-	}
+//	@Controller
+//	public static class MyController {
+//
+//		@GetMapping("/index")
+//		public String index() {
+//			return "index";
+//		}
+//	}
 }
