@@ -15,11 +15,11 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> {
-            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/api/v1/registration/**"});
+            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/registration/**"});
         }).authorizeHttpRequests((authorize) -> {
-            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/api/v1/registration/**", "/error"})).permitAll().anyRequest()).authenticated();
+            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/registration/**", "/error"})).permitAll().anyRequest()).authenticated();
         }).httpBasic(withDefaults())
-                .formLogin(withDefaults());
+                .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index", true).permitAll());
         return (SecurityFilterChain)http.build();
     }
 

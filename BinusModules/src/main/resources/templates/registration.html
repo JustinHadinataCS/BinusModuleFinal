@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            color: #5e057e;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #5e057e;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c299d0;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5e057e;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c299d0;
+        }
+
+        .message {
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .success {
+            background-color: #5e057e;
+        }
+
+        .logout {
+            background-color: #c299d0;
+        }
+
+        .error {
+            background-color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div th:if="${param.success}">
+            <p class="message success">Registration successful! Welcome aboard.</p>
+        </div>
+
+        <h2>Register</h2>
+        <form method="POST" role="form" th:action="@{/register}" th:object="${user}">
+            <label for="firstname">Firstname</label>
+            <input th:field="*{firstname}" type="text" id="firstname" name="firstname" required>
+
+            <label for="lastname">Lastname</label>
+            <input th:field="*{lastname}" type="text" id="lastname" name="lastname" required>
+
+            <label for="email">Email</label>
+            <input th:field="*{email}" type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input th:field="*{password}" type="password" id="password" name="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <span>Already Registered <a th:href="@{/login}">Login</a></span>
+    </div>
+</body>
+</html>

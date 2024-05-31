@@ -1,6 +1,10 @@
 package com.example.demo.Registration;
 
 import com.example.demo.AppUser.AppUser;
+import com.example.demo.Registration.RegistrationRequest;
+import com.example.demo.Registration.RegistrationService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,8 +12,7 @@ import java.util.List;
 
 import static com.example.demo.AppUser.AppUserRole.ADMIN;
 
-@RestController
-@RequestMapping(path = {"api/v1/registration"})
+@Controller
 public class RegistrationController {
 
     private RegistrationService registrationService;
@@ -20,12 +23,33 @@ public class RegistrationController {
     }
 
     @GetMapping("/index")
-    public String index() {
-        return "index";
+    public String index(){return "index";}
+
+    @GetMapping("/login")
+    public String login(Model model, RegistrationRequest request){
+        model.addAttribute("user", request);
+        return "login";
     }
 
-    @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
-        return this.registrationService.register(request);
+    @GetMapping("/registration")
+    public String registration(Model model, RegistrationRequest request){
+        model.addAttribute("user", request);
+        return "registration";
     }
+
+    @PostMapping("/registration")
+    public String registerSave(@ModelAttribute("user") RegistrationRequest request) {
+        registrationService.register(request);
+        return "redirect:/registration?success";
+    }
+
+//    @GetMapping("/index")
+//    public String index() {
+//        return "index";
+//    }
+//
+//    @PostMapping
+//    public String register(@RequestBody RegistrationRequest request) {
+//        return this.registrationService.register(request);
+//    }
 }

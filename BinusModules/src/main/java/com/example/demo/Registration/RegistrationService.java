@@ -13,7 +13,7 @@ public class RegistrationService {
         this.appUserService = appUserService;
     }
 
-    public String register(RegistrationRequest request){
+    public AppUser register(RegistrationRequest request){
         return appUserService.signUpUser(
                 new AppUser(
                         request.getFirstname(),
