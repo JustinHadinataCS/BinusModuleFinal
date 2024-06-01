@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
           <a class="sidebar-item" href=""><span class="material-symbols-outlined">calendar_month</span><span class="sidebar-item-title">Timetable</span></a>
           <a class="sidebar-item" href=""><span class="material-symbols-outlined">School</span><span class="sidebar-item-title">Courses</span></a>
           <a class="sidebar-item" href=""><span class="material-symbols-outlined">Settings</span><span class="sidebar-item-title">Settings</span></a>
+          <a class="sidebar-item" th:href="@{/logout}"><span class="material-symbols-outlined">logout</span><span class="sidebar-item-title">Logout</span></a>
         </nav>
       </div>
       <footer></footer>
