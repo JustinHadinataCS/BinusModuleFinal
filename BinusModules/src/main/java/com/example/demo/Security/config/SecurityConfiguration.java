@@ -3,6 +3,7 @@ package com.example.demo.Security.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -10,16 +11,17 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> {
-            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/api/v1/registration/**"});
+            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/registration*", "/login*"});
         }).authorizeHttpRequests((authorize) -> {
-            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/api/v1/registration/**", "/error"})).permitAll().anyRequest()).authenticated();
+            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/registration*", "/login*","/error"})).permitAll().anyRequest()).authenticated();
         }).httpBasic(withDefaults())
-                .formLogin(withDefaults());
+                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/index", true).usernameParameter("email").permitAll());
         return (SecurityFilterChain)http.build();
     }
 

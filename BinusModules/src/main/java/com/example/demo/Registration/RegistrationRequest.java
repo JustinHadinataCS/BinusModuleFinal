@@ -7,9 +7,6 @@ public class RegistrationRequest {
     private String email;
     private String password;
 
-    public RegistrationRequest() {
-    }
-
     public String getFirstname() {
         return this.firstname;
     }

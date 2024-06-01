@@ -3,7 +3,12 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.AppUser.AppUser;
+import com.example.demo.Registration.RegistrationRequest;
+import com.example.demo.Registration.RegistrationService;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Service
 public class subjectService {
@@ -34,4 +39,5 @@ public class subjectService {
     public void deleteSubject(String code) {
         subjects.removeIf(s -> s.getCode().equals(code));
     }
+
 }
