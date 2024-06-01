@@ -19,7 +19,7 @@
         }
 
         .form-container {
-            background-color: white;
+            background-color: #048ED4;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
         }
 
         h2 {
-            color: #5e057e;
+            color: white;
             text-align: center;
             margin-bottom: 20px;
             font-weight: bold;
@@ -37,14 +37,13 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #5e057e;
+            color: white;
         }
 
         input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #c299d0;
             border-radius: 5px;
             box-sizing: border-box;
         }
@@ -52,46 +51,51 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #5e057e;
+            background-color: #E38027;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            margin-bottom: 15px;
         }
 
         button:hover {
-            background-color: #c299d0;
+            background-color: #B4651F;
         }
 
         .message {
+            background-color: #E38027;
             width: 80%;
             max-width: 600px;
             padding: 20px;
             border-radius: 10px;
-            margin: 10px 0;
+            margin: 10px auto;
             text-align: center;
             font-weight: bold;
             color: white;
         }
 
-        .success {
-            background-color: #5e057e;
+        span{
+            text-align: center;
+            width: 100%;
+            color: white;
         }
 
-        .logout {
-            background-color: #c299d0;
-        }
-
-        .error {
-            background-color: #d9534f;
+        a{
+            text-decoration: none;
+            color: #E38027;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <div th:if="${param.success}">
-            <p class="message success">Registration successful! Welcome aboard.</p>
+            <p class="message success">Registration successful! You may login now!</p>
+        </div>
+
+        <div th:if="${param.error}">
+            <p class="message success">Email Taken!</p>
         </div>
 
         <h2>Register</h2>
@@ -111,7 +115,7 @@
             <button type="submit">Register</button>
         </form>
 
-        <span>Already Registered <a th:href="@{/login}">Login</a></span>
+        <span>Already Registered? <a th:href="@{/login}">Login</a></span>
     </div>
 </body>
 </html>

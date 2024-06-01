@@ -43,7 +43,7 @@ public class RegistrationController {
     public String registrationSave(@ModelAttribute("user") RegistrationRequest request) {
         boolean userExists = registrationService.register(request);
         if(userExists){
-            return "registration";
+            return "redirect:/registration?error";
         }
         return "redirect:/registration?success";
     }
