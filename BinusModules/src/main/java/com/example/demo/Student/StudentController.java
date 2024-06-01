@@ -1,10 +1,12 @@
 package com.example.demo.Student;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -20,4 +22,10 @@ public class StudentController {
     public List<Student> GetStudent (){
         return studentService.GetStudent();
     }
+
+    @PostMapping
+    public void RegisterNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
+    }
+
 }
