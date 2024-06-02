@@ -8,6 +8,7 @@
 body {
     padding-top: 5rem;
     margin: 0;
+    background: #f5f5f5;
 }
 
 
@@ -16,6 +17,10 @@ a{
     color: black;
 }
 
+/*-------------------------                                             
+header-----------
+--------------------------*/
+
 .top-bar {
     display: flex;
     position:fixed;
@@ -23,7 +28,7 @@ a{
     width: 100%;
     height: 4rem;
     border-bottom: 0.15rem solid #c8ced3;
-
+    background: white;
 }
 
 .logo-container {
@@ -33,11 +38,6 @@ a{
     width: 100%;
     max-width: 600px;
     height: 100%;
-}
-
-.logout-button{
-    border:none;
-    background: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -53,18 +53,109 @@ a{
 
 .main-container {
     width: 100%;
-    height: 100%;
+    height: 90vh;
+    display: grid;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    grid-template-rows: 1fr 8fr;
 }
+
+@media only screen and (min-width: 768px) {
+    .main-container {
+        grid-template-rows: 100%;
+        grid-template-columns: 1fr 8fr;
+        padding: 0 2rem;
+        gap: 2rem;
+    }
+}
+
+/*-------------------------                                             
+homepage content-----------
+--------------------------*/
+
+.home-content{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    gap: 2rem
+}
+
+.home-content-header{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background: #008DD4;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2rem
+}
+
+.home-title{
+
+    color: white;
+    margin: 0;
+    height: 100%;
+
+}
+
+.home-content-items{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+@media only screen and (min-width: 768px) {
+    .home-title{
+        margin: 0;
+        height: 100%;
+        font-size: 4rem;
+    }
+}
+
+/*-------------------------                                             
+course content-----------
+--------------------------*/
+
+.course-content, .student-content{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    height: 90vh;
+}
+
+.course-list, .student-list{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.course-table, .student-table{
+    width: 100%;
+    border: 2px solid gray;
+}
+
+.course-table th, .student-table th, .course-table td{
+    padding: 2rem;
+    border: 1px solid gray;
+}
+
+/*-------------------------                                             
+student content-----------
+--------------------------*/
+
+
+/*-------------------------                                             
+navbar-----------
+--------------------------*/
 
 .sidebar {
     position: fixed;
-    top: 5rem;
+    top: 4rem;
     left: 0;
     z-index: 900;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-around;
     width: 100%;
+    background: white;
+    height: 4rem;
 }
 
 .sidebar-item{
@@ -77,11 +168,14 @@ a{
 
 @media only screen and (min-width: 768px) {
     .sidebar {
+      background: transparent;
+      height: auto;
       padding: 0;
+      align-items: stretch;
       justify-content: center;
       flex-direction: column;
       width: calc(4rem + 15px);
-      top: 4rem;
+      top: 5rem;
       margin-left: 2rem;
     }
 
@@ -105,7 +199,7 @@ a{
 
 @media only screen and (min-width: 1200px) {
     .sidebar {
-      width: 10rem;
+      width: 15rem;
       margin: 0;
     }
 

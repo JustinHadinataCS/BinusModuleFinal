@@ -18,18 +18,27 @@
         <div class="nav">
           <nav class="sidebar">
             <a class="sidebar-item" th:href="@{/index}"><span class="material-symbols-outlined">home</span><span class="sidebar-item-title">Home</span></a>
-            <a class="sidebar-item" ><span class="material-symbols-outlined">calendar_month</span><span class="sidebar-item-title">Timetable</span></a>
+            <a class="sidebar-item" th:href=""><span class="material-symbols-outlined">calendar_month</span><span class="sidebar-item-title">Timetable</span></a>
             <a class="sidebar-item" th:href="@{/course}"><span class="material-symbols-outlined">School</span><span class="sidebar-item-title">Courses</span></a>
             <a class="sidebar-item" th:href="@{/student}"><span class="material-symbols-outlined">person</span><span class="sidebar-item-title">Students</span></a>
-            <a class="sidebar-item" ><span class="material-symbols-outlined">Settings</span><span class="sidebar-item-title">Settings</span></a>
+            <a class="sidebar-item" th:href=""><span class="material-symbols-outlined">Settings</span><span class="sidebar-item-title">Settings</span></a>
             <a class="sidebar-item" th:href="@{/logout}"><span class="material-symbols-outlined">logout</span><span class="sidebar-item-title">Logout</span></a>
           </nav>
         </div>
-        <div class="home-content">
-          <div class="home-content-header">
-            <h1 class="home-title">Welcome to Binus <span style="color: #F5AF33">Modules</span>, <span th:text="${userdetail.firstName}">[Name]</span></h1>
-          </div>
-          <div class="home-content-items"></div>
+        <div class="course-content">
+            <div class="course-list">
+                <table class="course-table">
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                    </tr>
+                    <tr th:each="course: ${courseList}">
+                        <td th:text="${course.courseCode}"></td>
+                        <td th:text="${course.courseName}"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="empty"></div>
         </div>
       </div>
       <footer></footer>
