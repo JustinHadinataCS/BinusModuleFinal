@@ -46,7 +46,7 @@ public class StudentService {
         if(UpdateStudent.getStudent_id() != null && !Objects.equals(student.getStudent_id(), UpdateStudent.getStudent_id())){
             Optional<Student>  StudentOptional = studentRepository.findStudentById(UpdateStudent.getStudent_id());
             if(StudentOptional.isPresent()){
-                throw new IllegalStateException("Email is not available");
+                throw new IllegalStateException("Student ID is not available");
             }
             student.setStudent_id(UpdateStudent.getStudent_id());
         }
