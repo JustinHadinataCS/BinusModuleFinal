@@ -28,4 +28,14 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    @DeleteMapping(path = "{StudentId}")
+    public void DeleteStudent (@PathVariable("StudentId") Long StudentId){
+        studentService.DeleteStudent(StudentId);
+    }
+
+    @PutMapping(path = "{StudentID}")
+    public void UpdateStudent(@PathVariable("StudentId") Long StudentId,
+                              @RequestBody Student UpdateStudent){
+        studentService.UpdateStudent(StudentId, UpdateStudent);
+    }
 }
