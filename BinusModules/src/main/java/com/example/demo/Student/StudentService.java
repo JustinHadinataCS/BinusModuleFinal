@@ -20,7 +20,7 @@ public class StudentService {
     public List<Student> GetStudent (){ return studentRepository.findAll(); }
 
     public void addNewStudent(Student student){
-        Optional<Student> Student_Optional = studentRepository.findStudentByEmail(student.getEmail());
+        Optional<Student> Student_Optional = studentRepository.findStudentById(student.getStudent_id());
         if(Student_Optional.isPresent()){
             throw new IllegalStateException("Student ID is not available");
         }
@@ -43,11 +43,12 @@ public class StudentService {
         if (UpdateStudent.getName() != null && !Objects.equals(student.getName(), UpdateStudent.getName())){
             student.setName(UpdateStudent.getName());
         }
-        if(UpdateStudent.getEmail() != null && !Objects.equals(student.getEmail(), UpdateStudent.getEmail())){
-            Optional<Student>  StudentOptional = studentRepository.findStudentByEmail(UpdateStudent.getEmail());
+        if(UpdateStudent.getStudent_id() != null && !Objects.equals(student.getStudent_id(), UpdateStudent.getStudent_id())){
+            Optional<Student>  StudentOptional = studentRepository.findStudentById(UpdateStudent.getStudent_id());
             if(StudentOptional.isPresent()){
                 throw new IllegalStateException("Email is not available");
             }
+            student.setStudent_id(UpdateStudent.getStudent_id());
         }
 
     }

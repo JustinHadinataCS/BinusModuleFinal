@@ -15,7 +15,7 @@ public class StudentConfig {
     CommandLineRunner commandLineRunner(StudentRepository repository){
         return args -> {
             Student michael = new Student(
-                    2L, "Michael", "@Justin@gmail.com",9090
+                    2L, "Michael","9090"
             );
             repository.saveAll(
                     List.of(michael)
