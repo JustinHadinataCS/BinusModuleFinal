@@ -6,11 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RestController
-@RequestMapping(path = "api/v1/student")
+@Controller
 public class StudentController {
     private final StudentService studentService;
 
@@ -18,12 +19,14 @@ public class StudentController {
     public StudentController(StudentService studentService){
         this.studentService = studentService;
     }
-    @GetMapping
-    public List<Student> GetStudent (){
-        return studentService.GetStudent();
+    @GetMapping("/student")
+    public String student(Model model){
+        List<Student> studentsList = studentService.GetStudent();
+        model.addAttribute("studentsList", studentsList);
+        return "student";
     }
 
-    @PostMapping
+    @PostMapping("/student")
     public void RegisterNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
     }

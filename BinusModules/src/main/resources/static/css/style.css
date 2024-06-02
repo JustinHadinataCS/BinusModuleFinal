@@ -131,15 +131,10 @@ course content-----------
     border: 2px solid gray;
 }
 
-.course-table th, .student-table th, .course-table td{
+.course-table th, .student-table th, .course-table td, .student-table td{
     padding: 2rem;
     border: 1px solid gray;
 }
-
-/*-------------------------                                             
-student content-----------
---------------------------*/
-
 
 /*-------------------------                                             
 navbar-----------

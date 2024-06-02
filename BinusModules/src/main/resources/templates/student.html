@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" type="image/jpg" href="/Binus-Icon.png"/>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="shortcut icon" type="image/jpg" href="images/Binus-Icon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
   <title>Student - BINUSModules</title>
 </head>
@@ -12,16 +12,16 @@
   <div class="app">
     <div class="app-container">
       <nav class="top-bar">
-        <a class="logo-container" href="#"><img class="binus-modules-logo" src="logo.png"></a>
+        <a class="logo-container" href="#"><img class="binus-modules-logo" src="images/logo.png"></a>
       </nav>
       <div class="main-container">
         <div class="nav">
           <nav class="sidebar">
             <a class="sidebar-item" th:href="@{/index}"><span class="material-symbols-outlined">home</span><span class="sidebar-item-title">Home</span></a>
-            <a class="sidebar-item" th:href=""><span class="material-symbols-outlined">calendar_month</span><span class="sidebar-item-title">Timetable</span></a>
+            <a class="sidebar-item"><span class="material-symbols-outlined">calendar_month</span><span class="sidebar-item-title">Timetable</span></a>
             <a class="sidebar-item" th:href="@{/course}"><span class="material-symbols-outlined">School</span><span class="sidebar-item-title">Courses</span></a>
             <a class="sidebar-item" th:href="@{/student}"><span class="material-symbols-outlined">person</span><span class="sidebar-item-title">Students</span></a>
-            <a class="sidebar-item" th:href=""><span class="material-symbols-outlined">Settings</span><span class="sidebar-item-title">Settings</span></a>
+            <a class="sidebar-item"><span class="material-symbols-outlined">Settings</span><span class="sidebar-item-title">Settings</span></a>
             <a class="sidebar-item" th:href="@{/logout}"><span class="material-symbols-outlined">logout</span><span class="sidebar-item-title">Logout</span></a>
           </nav>
         </div>
@@ -29,10 +29,12 @@
             <div class="student-list">
                 <table class="student-table">
                     <tr>
-                        <th>Students</th>
+                        <th>Student Names</th>
+                        <th>Student ID</th>
                     </tr>
-                    <tr th:each="person: ${personList}">
-                        <td th:text="${person.firstName}"></td>
+                    <tr th:each="student: ${studentsList}">
+                        <td th:text="${student.name}"></td>
+                        <td th:text="${student.student_id}"></td>
                     </tr>
                 </table>
             </div>
