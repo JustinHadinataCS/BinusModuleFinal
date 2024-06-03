@@ -137,6 +137,11 @@ course content-----------
 }
 
 /*-------------------------                                             
+student content-----------
+--------------------------*/
+
+
+/*-------------------------
 navbar-----------
 --------------------------*/
 
@@ -203,4 +208,30 @@ navbar-----------
         flex-wrap: nowrap;
         justify-content: flex-start;
     }
+}
+
+.search-form{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    gap: 30px;
+    padding: 1rem 0;
+}
+
+.search-form input[type="text"]{
+    height: 50px;
+    border-radius: 5px;
+    padding: 0 1rem;
+    font-size: 1.25rem;
+}
+
+.search-form button[type="submit"]{
+    background: white;
+    border-radius: 5px;
+    font-size: 1.25rem;
+}
+
+button[type="submit"]:hover{
+    cursor: pointer;
+    background: #cacaca;
 }

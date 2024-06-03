@@ -16,8 +16,13 @@ public class subjectService {
     private List<Subject> subjects = new ArrayList<>();
 
 
-    public List<Subject> getAllSubjects() {
+    // Search system (if there is a keyword input)
+    public List<Subject> getAllSubjects(String keyword) {
 //        return subjects;
+
+        if(keyword != null){
+            return subjectRepository.searchCourse(keyword);
+        }
         return subjectRepository.findAll();
 
     }
