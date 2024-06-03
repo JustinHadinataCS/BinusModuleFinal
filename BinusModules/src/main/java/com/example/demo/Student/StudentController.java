@@ -26,7 +26,7 @@ public class StudentController {
         return "student";
     }
 
-    @PostMapping("/student")
+    @PostMapping("/api/v1/student")
     public void RegisterNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
     }

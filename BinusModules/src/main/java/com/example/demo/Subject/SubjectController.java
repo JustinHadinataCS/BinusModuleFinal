@@ -1,8 +1,7 @@
-package com.example.demo;
+package com.example.demo.Subject;
 
 import java.util.List;
 
-import com.example.demo.Student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class SubjectController {
         return subjectService.getSubjectByCode(code);
     }
 
-    @PostMapping
+    @PostMapping("api/v1/course")
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
     }
