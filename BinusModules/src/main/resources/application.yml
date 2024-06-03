@@ -8,8 +8,8 @@ server:
 spring:
   datasource:
     password:
-    url: jdbc:postgresql://localhost:5432/registration
-    username: postgres
+    url: jdbc:postgresql://ep-polished-sound-a177hhgs.ap-southeast-1.pg.koyeb.app/registration?user=Binus-admin&password=nVuIYpv02aOh
+    username:
   jpa:
     ddl-auto: create-drop
     properties:

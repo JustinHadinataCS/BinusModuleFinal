@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.logging.Logger;
 
+/*
 public class TestAppUserM {
     private static final int ELEMENT_COUNT = 1000;
     private static final int SEARCH_COUNT = 100;
@@ -215,3 +216,4 @@ class Graph {
         adjList.remove(node);
     }
 }
+*/
