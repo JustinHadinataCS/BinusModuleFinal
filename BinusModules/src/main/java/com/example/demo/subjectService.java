@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Service
 public class subjectService {
 
-    //Delete this 
+    //Delete this
     @Autowired
     private SubjectRepository subjectRepository;
 
