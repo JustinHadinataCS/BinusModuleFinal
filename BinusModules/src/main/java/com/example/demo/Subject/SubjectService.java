@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class SubjectService {
 
+
     private List<Subject> subjects = new ArrayList<>();
 
     public List<Subject> getAllSubjects(String keyword) {
@@ -84,6 +85,71 @@ public class SubjectService {
         }
         return null;
     }
+    private void mergeSort(List<Subject> subjects) {
+        if (subjects.size() > 1) {
+            int mid = subjects.size() / 2;
+            List<Subject> left = subjects.subList(0, mid);
+            List<Subject> right = subjects.subList(mid, subjects.size());
+
+            mergeSort(left);
+            mergeSort(right);
+
+            merge(left, right, subjects);
+        }
+    }
+
+    private void merge(List<Subject> left, List<Subject> right, List<Subject> subjects) {
+        int i = 0, j = 0, k = 0;
+
+        while (i < left.size() && j < right.size()) {
+            if (left.get(i).getName().compareTo(right.get(j).getName()) <= 0) {
+                subjects.set(k++, left.get(i++));
+            } else {
+                subjects.set(k++, right.get(j++));
+            }
+        }
+
+        while (i < left.size()) {
+            subjects.set(k++, left.get(i++));
+        }
+
+        while (j < right.size()) {
+            subjects.set(k++, right.get(j++));
+        }
+    }
+
+    public void mergeSortByName() {
+        mergeSort(subjects);
+    }
+    private void quickSort(List<Subject> subjects, int low, int high) {
+        if (low < high) {
+            int pi = partition(subjects, low, high);
+
+            quickSort(subjects, low, pi - 1);
+            quickSort(subjects, pi + 1, high);
+        }
+    }
+
+    private int partition(List<Subject> subjects, int low, int high) {
+        String pivot = subjects.get(high).getName();
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (subjects.get(j).getName().compareTo(pivot) < 0) {
+                i++;
+                Collections.swap(subjects, i, j);
+            }
+        }
+
+        Collections.swap(subjects, i + 1, high);
+        return i + 1;
+    }
+
+    public void quickSortByName() {
+        quickSort(subjects, 0, subjects.size() - 1);
+    }
+
+
 
     public void performanceTest() {
         // Populate data for testing
@@ -109,5 +175,19 @@ public class SubjectService {
         }
         endTime = System.nanoTime();
         System.out.println("Binary Search by Name in ArrayList time: " + (endTime - startTime) + " ns");
+
+        // Performance test for Merge Sort
+        startTime = System.nanoTime();
+        mergeSortByName();
+        endTime = System.nanoTime();
+        System.out.println("Merge Sort by Name in ArrayList time: " + (endTime - startTime) + " ns");
+
+        // Performance test for Quick Sort
+        startTime = System.nanoTime();
+        quickSortByName();
+        endTime = System.nanoTime();
+        System.out.println("Quick Sort by Name in ArrayList time: " + (endTime - startTime) + " ns");
     }
+
+
 }
