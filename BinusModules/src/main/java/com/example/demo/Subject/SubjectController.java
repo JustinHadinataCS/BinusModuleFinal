@@ -25,10 +25,10 @@ public class SubjectController {
         return "course";
     }
 
-    @GetMapping("/{code}")
-    public Subject getSubjectByCode(@PathVariable String code) {
-        return subjectService.getSubjectByCode(code);
-    }
+//    @GetMapping("/{code}")
+//    public Subject getSubjectByCode(@PathVariable String code) {
+//        return subjectService.getSubjectByCode(code);
+//    }
 
     @PostMapping("api/v1/course")
     public void addSubject(@RequestBody Subject subject) {
@@ -47,7 +47,8 @@ public class SubjectController {
 
     @GetMapping("/performance-test")
     public String performPerformanceTest() {
-        performanceTestService.testPerformance();
+        performanceTestService.runPerformanceTest(); // Corrected method name
         return "Performance test completed. Check the logs for results.";
     }
+
 }
