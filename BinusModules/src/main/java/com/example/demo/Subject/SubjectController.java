@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.demo.Subject;
 
 import java.util.List;
 
-import com.example.demo.Student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +15,10 @@ public class SubjectController {
     private subjectService subjectService;
 
     @GetMapping("/course")
-    public String student(Model model){
-        List<Subject> subjectsList = subjectService.getAllSubjects();
+    public String student(Model model, @Param("keyword") String keyword){
+        List<Subject> subjectsList = subjectService.getAllSubjects(keyword);
         model.addAttribute("courseList", subjectsList);
+        model.addAttribute("keyword", keyword);
         return "course";
     }
 
@@ -26,7 +27,7 @@ public class SubjectController {
         return subjectService.getSubjectByCode(code);
     }
 
-    @PostMapping
+    @PostMapping("api/v1/course")
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
     }

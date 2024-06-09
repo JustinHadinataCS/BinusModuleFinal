@@ -1,15 +1,10 @@
-package com.example.demo;
+package com.example.demo.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.AppUser.AppUser;
-import com.example.demo.Registration.RegistrationRequest;
-import com.example.demo.Registration.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
 @Service
 public class subjectService {
@@ -21,8 +16,13 @@ public class subjectService {
     private List<Subject> subjects = new ArrayList<>();
 
 
-    public List<Subject> getAllSubjects() {
+    // Search system (if there is a keyword input)
+    public List<Subject> getAllSubjects(String keyword) {
 //        return subjects;
+
+        if(keyword != null){
+            return subjectRepository.searchCourse(keyword);
+        }
         return subjectRepository.findAll();
 
     }
