@@ -1,18 +1,21 @@
 package com.example.demo.Subject;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class SubjectController {
 
     @Autowired
-    private subjectService subjectService;
+    private SubjectService subjectService;
+
+    @Autowired
+    private PerformanceTestService performanceTestService;
 
     @GetMapping("/course")
     public String student(Model model, @Param("keyword") String keyword){
@@ -40,5 +43,11 @@ public class SubjectController {
     @DeleteMapping("/{code}")
     public void deleteSubject(@PathVariable String code) {
         subjectService.deleteSubject(code);
+    }
+
+    @GetMapping("/performance-test")
+    public String performPerformanceTest() {
+        performanceTestService.testPerformance();
+        return "Performance test completed. Check the logs for results.";
     }
 }
