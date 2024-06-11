@@ -2,16 +2,58 @@ package com.example.demo.Subject;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SubjectService {
 
 
     private List<Subject> subjects = new ArrayList<>();
+
+    public SubjectService() {
+        addInitialSubjects();
+
+//        mergeSort(subjects);
+    }
+
+    private void addInitialSubjects() {
+        subjects.add(new Subject("CHAR6013001", "Character Building: Pancasila"));
+        subjects.add(new Subject("COMP6798001", "Program Design Methods*"));
+        subjects.add(new Subject("COMP6800001", "Human and Computer Interaction"));
+        subjects.add(new Subject("COMP6047001", "Algorithm and Programming* (Block)"));
+        subjects.add(new Subject("MATH6025001", "Discrete Mathematics"));
+        subjects.add(new Subject("MATH6183001", "Scientific Computing"));
+        subjects.add(new Subject("COMP6048001", "Data Structures* (Block)"));
+        subjects.add(new Subject("ENGL6171001", "Academic English I"));
+        subjects.add(new Subject("ENTR6091005", "Project Hatchery (Block)"));
+        subjects.add(new Subject("COMP6699001", "Object Oriented Programming"));
+        subjects.add(new Subject("MATH6031001", "Calculus"));
+        subjects.add(new Subject("MATH6030001", "Linear Algebra"));
+        subjects.add(new Subject("ENGL6172001", "Academic English II"));
+        subjects.add(new Subject("CHAR6014001", "Character Building: Kewarganegaraan"));
+        subjects.add(new Subject("COMP6049001", "Algorithm Design and Analysis"));
+        subjects.add(new Subject("COMP6784001", "Fundamentals of Data Science"));
+        subjects.add(new Subject("STAT6171001", "Basic Statistics"));
+        subjects.add(new Subject("ENTR6486005", "Entrepreneurship Hatchery"));
+        subjects.add(new Subject("COMP6799001", "Database Technology*"));
+        subjects.add(new Subject("LANG6027001", "Indonesian"));
+        subjects.add(new Subject("CHAR6015001", "Character Building: Agama"));
+        subjects.add(new Subject("CPEN6247001", "Computer Networks"));
+        subjects.add(new Subject("COMP6703001", "Web Application Development and Security"));
+        subjects.add(new Subject("COMP6697001", "Operating Systems*"));
+        subjects.add(new Subject("SCIE6063001", "Computational Physics"));
+        subjects.add(new Subject("COMP6210001", "Ethical Hacking and Penetration Testing"));
+        subjects.add(new Subject("GAME6048001", "Games Design and Programming"));
+        subjects.add(new Subject("SCIE6062001", "Computational Biology"));
+        subjects.add(new Subject("COMP6062001", "Compilation Techniques"));
+        subjects.add(new Subject("COMP6065001", "Artificial Intelligence"));
+        subjects.add(new Subject("COMP6100001", "Software Engineering*"));
+        subjects.add(new Subject("COMP6705001", "Distributed Systems"));
+        subjects.add(new Subject("COMP6696001", "Research Methodology in Computer Science"));
+        subjects.add(new Subject("COMP6348001", "Network Forensics"));
+        subjects.add(new Subject("GAME6046001", "Advanced Games Design and Programming"));
+
+    }
 
     public List<Subject> getAllSubjects(String keyword) {
         if (keyword != null) {
@@ -38,7 +80,6 @@ public class SubjectService {
 
     public void addSubject(Subject subject) {
         subjects.add(subject);
-        Collections.sort(subjects, Comparator.comparing(Subject::getName));
     }
 
     public void updateSubject(String code, Subject subject) {
@@ -85,108 +126,277 @@ public class SubjectService {
         }
         return null;
     }
-    private void mergeSort(List<Subject> subjects) {
-        if (subjects.size() > 1) {
-            int mid = subjects.size() / 2;
-            List<Subject> left = subjects.subList(0, mid);
-            List<Subject> right = subjects.subList(mid, subjects.size());
 
-            mergeSort(left);
-            mergeSort(right);
+//    private void quickSort(List<Subject> subjects, int low, int high) {
+//        if (low < high) {
+//            int pi = partition(subjects, low, high);
+//
+//            quickSort(subjects, low, pi - 1);
+//            quickSort(subjects, pi + 1, high);
+//        }
+//    }
 
-            merge(left, right, subjects);
-        }
-    }
+//    private int partition(List<Subject> subjects, int low, int high) {
+//        String pivot = subjects.get(high).getName();
+//        int i = low - 1;
+//
+//        for (int j = low; j < high; j++) {
+//            if (subjects.get(j).getName().compareTo(pivot) < 0) {
+//                i++;
+//                Collections.swap(subjects, i, j);
+//            }
+//        }
+//
+//        Collections.swap(subjects, i + 1, high);
+//        return i + 1;
+//    }
+//
+//    public void quickSortByName() {
+//        quickSort(subjects, 0, subjects.size() - 1);
+//    }
 
-    private void merge(List<Subject> left, List<Subject> right, List<Subject> subjects) {
-        int i = 0, j = 0, k = 0;
 
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i).getName().compareTo(right.get(j).getName()) <= 0) {
-                subjects.set(k++, left.get(i++));
-            } else {
-                subjects.set(k++, right.get(j++));
-            }
-        }
-
-        while (i < left.size()) {
-            subjects.set(k++, left.get(i++));
-        }
-
-        while (j < right.size()) {
-            subjects.set(k++, right.get(j++));
-        }
-    }
-
-    public void mergeSortByName() {
-        mergeSort(subjects);
-    }
-    private void quickSort(List<Subject> subjects, int low, int high) {
+    // Merge sort for ArrayList
+    public static void mergeSortArrayList(List<Subject> list, int low, int high) {
         if (low < high) {
-            int pi = partition(subjects, low, high);
-
-            quickSort(subjects, low, pi - 1);
-            quickSort(subjects, pi + 1, high);
+            int mid = (low + high) / 2;
+            mergeSortArrayList(list, low, mid);
+            mergeSortArrayList(list, mid + 1, high);
+            mergeArrayList(list, low, mid, high);
         }
     }
 
-    private int partition(List<Subject> subjects, int low, int high) {
-        String pivot = subjects.get(high).getName();
-        int i = low - 1;
+    public static void mergeArrayList(List<Subject> list, int low, int mid, int high) {
+        ArrayList<Subject> temp = new ArrayList<>();
+        int i = low;
+        int j = mid + 1;
 
-        for (int j = low; j < high; j++) {
-            if (subjects.get(j).getName().compareTo(pivot) < 0) {
-                i++;
-                Collections.swap(subjects, i, j);
+        while (i <= mid && j <= high) {
+            if (list.get(i).getName().compareTo(list.get(j).getName()) <= 0) {
+                temp.add(list.get(i++));
+            } else {
+                temp.add(list.get(j++));
             }
         }
 
-        Collections.swap(subjects, i + 1, high);
-        return i + 1;
+        while (i <= mid) {
+            temp.add(list.get(i++));
+        }
+        while (j <= high) {
+            temp.add(list.get(j++));
+        }
+
+        for (int k = low; k <= high; k++) {
+            list.set(k, temp.get(k - low));
+        }
     }
 
-    public void quickSortByName() {
-        quickSort(subjects, 0, subjects.size() - 1);
+    // Merge sort for LinkedList
+    public static void mergeSortLinkedList(List<Subject> list) {
+        if (list.size() <= 1) {
+            return;
+        }
+
+        LinkedList<Subject> leftHalf = new LinkedList<>();
+        LinkedList<Subject> rightHalf = new LinkedList<>();
+        int middle = list.size() / 2;
+        for (int i = 0; i < middle; i++) {
+            leftHalf.add(list.removeFirst());
+        }
+        while (!list.isEmpty()) {
+            rightHalf.add(list.removeFirst());
+        }
+
+        mergeSortLinkedList(leftHalf);
+        mergeSortLinkedList(rightHalf);
+
+        mergeLinkedList(leftHalf, rightHalf, list);
     }
+
+    public static void mergeLinkedList(LinkedList<Subject> left, LinkedList<Subject> right, List<Subject> result) {
+        while (!left.isEmpty() && !right.isEmpty()) {
+            if (left.getFirst().getName().compareTo(right.getFirst().getName()) <= 0) {
+                result.add(left.removeFirst());
+            } else {
+                result.add(right.removeFirst());
+            }
+        }
+        while (!left.isEmpty()) {
+            result.add(left.removeFirst());
+        }
+        while (!right.isEmpty()) {
+            result.add(right.removeFirst());
+        }
+    }
+
+    // Merge sort for Queue
+    public static void mergeSortQueue(Queue<Subject> queue) {
+        if (queue.size() <= 1) {
+            return;
+        }
+
+        // Split the queue into two halves
+        Queue<Subject> left = new LinkedList<>();
+        Queue<Subject> right = new LinkedList<>();
+        int size = queue.size();
+        for (int i = 0; i < size / 2; i++) {
+            left.offer(queue.poll());
+        }
+        while (!queue.isEmpty()) {
+            right.offer(queue.poll());
+        }
+
+        // Recursively sort both halves
+        mergeSortQueue(left);
+        mergeSortQueue(right);
+
+        // Merge the sorted halves
+        merge(queue, left, right);
+    }
+
+    private static void merge(Queue<Subject> queue, Queue<Subject> left, Queue<Subject> right) {
+        while (!left.isEmpty() && !right.isEmpty()) {
+            assert right.peek() != null;
+            if (left.peek().getName().compareTo(right.peek().getName()) <= 0) {
+                queue.offer(left.poll());
+            } else {
+                queue.offer(right.poll());
+            }
+        }
+        while (!left.isEmpty()) {
+            queue.offer(left.poll());
+        }
+        while (!right.isEmpty()) {
+            queue.offer(right.poll());
+        }
+    }
+
+    // Merge sort for Stack
+    public static void mergeSortStack(Stack<Subject> stack) {
+        if (stack.size() <= 1) {
+            return;
+        }
+
+        // Split the stack into two halves
+        Stack<Subject> left = new Stack<>();
+        Stack<Subject> right = new Stack<>();
+        int size = stack.size();
+        for (int i = 0; i < size / 2; i++) {
+            left.push(stack.pop());
+        }
+        while (!stack.isEmpty()) {
+            right.push(stack.pop());
+        }
+
+        // Recursively sort both halves
+        mergeSortStack(left);
+        mergeSortStack(right);
+
+        // Merge the sorted halves
+        merge(stack, left, right);
+    }
+
+    private static void merge(Stack<Subject> stack, Stack<Subject> left, Stack<Subject> right) {
+        Stack<Subject> temp = new Stack<>();
+        while (!left.isEmpty() && !right.isEmpty()) {
+            if (left.peek().getName().compareTo(right.peek().getName()) <= 0) {
+                temp.push(left.pop());
+            } else {
+                temp.push(right.pop());
+            }
+        }
+        while (!left.isEmpty()) {
+            temp.push(left.pop());
+        }
+        while (!right.isEmpty()) {
+            temp.push(right.pop());
+        }
+        // Reverse the order back into the original stack
+        while (!temp.isEmpty()) {
+            stack.push(temp.pop());
+        }
+    }
+
+
 
 
 
     public void performanceTest() {
-        // Populate data for testing
-        for (int i = 0; i < 1000; i++) {
-            String code = "CSE" + i;
-            String name = "Subject " + i;
-            Subject subject = new Subject((long) i, code, name);
-            addSubject(subject);
-        }
+        // Adjustable sample data size
+        int size = 5000;
 
-        // Performance test for Linear Search by Name in ArrayList
+        // ARRAY LIST & LINKED LIST TESTING
+        List<Subject> subjectsArrayList = new ArrayList<>();
+        List<Subject> subjectsLinkedList = new LinkedList<>();
+        Queue<Subject> subjectsQueue = new LinkedList<>();
+        Stack<Subject> subjectsStack = new Stack<>();
+
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            Subject subject = new Subject("CODE" + i, "Subject " + random.nextInt(size));
+            subjectsArrayList.add(subject);
+            subjectsLinkedList.add(subject);
+            subjectsQueue.add(subject);
+            subjectsStack.push(subject);
+        }
+//
+//        // ARRAY LIST MERGE SORT
+//        long startTime = System.nanoTime();
+//        mergeSortArrayList(subjectsArrayList,0, subjectsArrayList.size() - 1);
+//        long endTime = System.nanoTime();
+//        double arrayListTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+//        System.out.printf("Merge Sort by Name in ArrayList time: %.3f ms%n", arrayListTime);
+//
+//        // LINKED LIST MERGE SORT
+//        startTime = System.nanoTime();
+//        mergeSortLinkedList(subjectsLinkedList);
+//        endTime = System.nanoTime();
+//        double linkedListTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+//        System.out.printf("Merge Sort by Name in LinkedList time: %.3f ms%n", linkedListTime);
+//
+//        // QUEUE MERGE SORT
+//        startTime = System.nanoTime();
+//        mergeSortQueue(subjectsQueue);
+//        endTime = System.nanoTime();
+//        double queueTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+//        System.out.printf("Merge Sort by Name in Queue time: %.3f ms%n", queueTime);
+//
+//        // STACK MERGE SORT
+//        startTime = System.nanoTime();
+//        mergeSortStack(subjectsStack);
+//        endTime = System.nanoTime();
+//        double stackTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+//        System.out.printf("Merge Sort by Name in Stack time: %.3f ms%n", stackTime);
+
+        // Measure time for ArrayList
         long startTime = System.nanoTime();
-        for (int i = 0; i < 1000; i++) {
-            linearSearchByName("Subject " + (i + 500)); // random access pattern
-        }
+        QuickSortTesting.quickSortArrayList(subjectsArrayList);
         long endTime = System.nanoTime();
-        System.out.println("Linear Search by Name in ArrayList time: " + (endTime - startTime) + " ns");
+        double arrayListTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+        System.out.printf("QuickSort in ArrayList time: %.3f ms%n", arrayListTime);
 
-        // Performance test for Binary Search by Name in ArrayList
+        // Measure time for Queue
         startTime = System.nanoTime();
-        for (int i = 0; i < 1000; i++) {
-            binarySearchByName("Subject " + (i + 500)); // random access pattern
-        }
+        QuickSortTesting.quickSortQueue(subjectsQueue);
         endTime = System.nanoTime();
-        System.out.println("Binary Search by Name in ArrayList time: " + (endTime - startTime) + " ns");
+        double queueTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+        System.out.printf("QuickSort in Queue time: %.3f ms%n", queueTime);
 
-        // Performance test for Merge Sort
+        // Measure time for Stack
         startTime = System.nanoTime();
-        mergeSortByName();
+        QuickSortTesting.quickSortStack(subjectsStack);
         endTime = System.nanoTime();
-        System.out.println("Merge Sort by Name in ArrayList time: " + (endTime - startTime) + " ns");
+        double stackTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+        System.out.printf("QuickSort in Stack time: %.3f ms%n", stackTime);
 
-        // Performance test for Quick Sort
+        // Measure time for LinkedList
+
         startTime = System.nanoTime();
-        quickSortByName();
+        QuickSortTesting.quickSortLinkedList(subjectsLinkedList);
         endTime = System.nanoTime();
-        System.out.println("Quick Sort by Name in ArrayList time: " + (endTime - startTime) + " ns");
+        double linkedListTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
+        System.out.printf("QuickSort in LinkedList time: %.3f ms%n", linkedListTime);
+
     }
 
 

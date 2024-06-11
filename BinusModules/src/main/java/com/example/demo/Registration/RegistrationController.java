@@ -34,6 +34,11 @@ public class RegistrationController {
         return "index";
     }
 
+    @GetMapping("/timetable")
+    public String timetable(){
+        return "timetable";
+    }
+
     @GetMapping("/login")
     public String login(Model model, RegistrationRequest request){
         model.addAttribute("user", request);
