@@ -19,9 +19,9 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> {
-            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/registration*", "/login*", "/api/v1/course*"});
+            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers(new String[]{"/registration*", "/login*", "/performance-test*"});
         }).authorizeHttpRequests((authorize) -> {
-            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/registration*", "/login*","/error", "/api/v1/course*"})).permitAll().anyRequest()).authenticated();
+            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)authorize.requestMatchers(new String[]{"/registration*", "/login*","/error", "/performance-test*"})).permitAll().anyRequest()).authenticated();
         }).httpBasic(withDefaults())
                 .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/index", true).usernameParameter("email").permitAll())
                 .logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout")));
