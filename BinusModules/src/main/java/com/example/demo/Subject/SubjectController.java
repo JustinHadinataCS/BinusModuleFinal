@@ -18,11 +18,16 @@ public class SubjectController {
     private PerformanceTestService performanceTestService;
 
     @GetMapping("/course")
-    public String student(Model model, @Param("keyword") String keyword){
+    public String student(Model model, @Param("keyword") String keyword) {
         List<Subject> subjectsList = subjectService.getAllSubjects(keyword);
         model.addAttribute("courseList", subjectsList);
         model.addAttribute("keyword", keyword);
         return "course";
+    }
+    @GetMapping("/performance-test")
+    public String performPerformanceTest() {
+        performanceTestService.runPerformanceTest(); // Corrected method name
+        return "Performance test completed. Check the logs for results.";
     }
 
 //    @GetMapping("/{code}")
@@ -45,10 +50,6 @@ public class SubjectController {
         subjectService.deleteSubject(code);
     }
 
-    @GetMapping("/performance-test")
-    public String performPerformanceTest() {
-        performanceTestService.runPerformanceTest(); // Corrected method name
-        return "Performance test completed. Check the logs for results.";
-    }
+
 
 }
